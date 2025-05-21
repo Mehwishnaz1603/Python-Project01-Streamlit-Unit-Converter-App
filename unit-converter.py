@@ -1,6 +1,7 @@
 import streamlit as st
 
-st.set_page_config(page_title="Unit Converter", layout="centered")
+
+# --- Title ---
 st.title("🌍 Universal Unit Converter")
 
 # --- Dictionaries for conversion rates ---
@@ -29,14 +30,10 @@ temperature_units = ["Celsius", "Fahrenheit", "Kelvin"]
 def convert_temperature(value, from_unit, to_unit):
     if from_unit == to_unit:
         return value
-
-    # Convert from from_unit to Celsius
     if from_unit == "Fahrenheit":
         value = (value - 32) * 5/9
     elif from_unit == "Kelvin":
         value = value - 273.15
-
-    # Convert from Celsius to to_unit
     if to_unit == "Fahrenheit":
         return (value * 9/5) + 32
     elif to_unit == "Kelvin":
@@ -45,7 +42,6 @@ def convert_temperature(value, from_unit, to_unit):
 
 # --- UI Elements ---
 category = st.selectbox("Select Conversion Category", ["Length", "Temperature", "Weight"])
-
 value = st.number_input("Enter Value", value=0.0, format="%.4f")
 
 if category == "Length":
@@ -65,3 +61,33 @@ elif category == "Temperature":
     to_unit = st.selectbox("To Unit", temperature_units)
     result = convert_temperature(value, from_unit, to_unit)
     st.success(f"{value} {from_unit} = {result:.2f} {to_unit}")
+
+# --- App Description ---
+st.markdown("""
+## About This App
+Welcome to the **Professional Unit Converter**, a versatile and user-friendly tool designed to seamlessly convert units across various categories.
+
+### Key Features:
+- **Multi-Category Conversion**: Convert Length, Weight, Temperature easily.
+- **Accurate Calculations**: Uses scientifically accurate formulas.
+- **Modern Interface**: Clean, responsive design using CSS.
+
+### How to Use:
+- Select a category
+- Input a value and choose units
+- See your result instantly
+""")
+
+# --- FAQ Section ---
+st.subheader("Frequently Asked Questions")
+faq = {
+    "What is this Unit Converter App?": "This app allows users to convert units across different categories such as Length, Weight, and Temperature with accurate calculations.",
+    "How does unit conversion work?": "Each unit has a standard conversion factor. The app uses these factors to convert values precisely.",
+    "Can I convert between different unit categories?": "No, conversion is only allowed within the same category.",
+    "Is the conversion result accurate?": "Yes, the app uses verified formulas for reliable results.",
+    "Can I add more unit categories in the future?": "Yes! The app is expandable to include more unit types like Speed, Volume, etc."
+}
+
+for question, answer in faq.items():
+    with st.expander(question):
+        st.write(answer)
