@@ -1,6 +1,11 @@
 import streamlit as st
 # --- Title ---
-st.title("🌐 Universal Unit Converter")
+st.title("🌐 Universal Unit Converter App")
+# --- Header Section ---
+st.markdown("""
+A simple, fast, and accurate tool for converting units across various categories like **Length**, **Weight**, **Temperature**, and **Speed**. Whether you need to convert meters to kilometers or Celsius to Fahrenheit, this app does it all!            
+""")
+
 
 # --- Theme toggle ---
 theme = st.radio("Choose Theme", ["🌞 Light", "🌙 Dark"], horizontal=True)
@@ -106,3 +111,12 @@ faq = {
 for question, answer in faq.items():
     with st.expander(question):
         st.write(answer)
+
+# --- Footer Section ---
+st.markdown("""
+<footer>
+            <strong>
+          <p>Created by ❤️ <a href="https://github.com/Mehwishnaz1603" target="_blank">Mehwish Naz</a>. &copy; 2025 All Rights Reserved</p>
+            </strong>
+</footer>
+""", unsafe_allow_html=True)
